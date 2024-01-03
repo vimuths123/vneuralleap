@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .checkout {
+      margin: 10px;
+      padding: 20px;
+    }
+
+    .checkout:hover{
+        cursor: pointer;
+    }
+  </style>
+
+  <!-- <script src="script.js" defer></script> -->
+</head>
+
+<body>
+
+  <button class="checkout" trial_days="7" lookupkey="DD560">monthly option with a 7-day free trial for $10,000</button>
+  <button class="checkout" trial_days="0" lookupkey="DD560">monthly option with no trial for $10,000</button>
+  <button class="checkout" trial_days="7" lookupkey="TN456">3-month option with a 7-day free trial for $27,000</button>
+  <button class="checkout" trial_days="0" lookupkey="TN456">3-month option with no trial for $27,000</button>
+  <button class="checkout" trial_days="7" lookupkey="PX66">6-month option with a 7-day free trial for $50,000</button>
+  <button class="checkout" trial_days="0" lookupkey="PX66">6-month option with no trial for $50,000</button>
+  <button class="checkout" trial_days="7" lookupkey="RA65">12-month option with a 7-day free trial for $100,000</button>
+  <button class="checkout" trial_days="0" lookupkey="RA65">12-month option with no trial for $100,000</button>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const checkoutButtons = document.querySelectorAll(".checkout");
+
+      checkoutButtons.forEach(button => {
+        button.addEventListener("click", function () {
+          const trialDays = button.getAttribute("trial_days");
+          const lookupKey = button.getAttribute("lookupkey");
+
+          fetch("/.netlify/functions/create-checkout-session", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              trial_days: trialDays,
+              lookupkey: lookupKey,
+            }),
+          })
+            .then(res => {
+              if (res.ok) return res.json()
+              return res.json().then(json => Promise.reject(json))
+            })
+            .then(({ url }) => {
+              window.location = url
+            })
+            .catch(e => {
+              console.error(e.error)
+            })
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
