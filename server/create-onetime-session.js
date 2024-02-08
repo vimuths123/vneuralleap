@@ -7,8 +7,8 @@ const success_url = "https://www.neuralleap.ai/thank-you.html";
 const cancel_url = "https://www.neuralleap.ai/thank-you.html";
 
 exports.handler = async (event, context) => {
-    const requestBody = JSON.parse(event.body);
-    const { priceid } = requestBody;
+    // const requestBody = JSON.parse(event.body);
+    // const { priceid } = requestBody;
 
     try {
         const customer = await stripe.customers.create();
@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: priceid,
+                    price: 'price_1OgrLQJYVRzxBOJIxJtsywA0',
                     quantity: 1,
                 },
             ],
