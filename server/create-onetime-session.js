@@ -28,10 +28,11 @@ exports.handler = async (event, context) => {
         });
 
         return {
-            statusCode: 200,
-            body: JSON.stringify({
-                url: session.url,
-            }),
+            statusCode: 303,
+            headers: {
+                Location: session.url,
+            },
+            body: '',
         };
     } catch (e) {
         return {
