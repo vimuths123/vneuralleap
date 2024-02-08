@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
 
         const session = await stripe.checkout.sessions.create({
             customer: customer.id,
-            payment_method_types: ['card'],
+            payment_method_types: ['us_bank_account'],
             line_items: [
                 {
                     price: 'price_1OgrLQJYVRzxBOJIxJtsywA0',
