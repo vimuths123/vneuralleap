@@ -23,8 +23,8 @@ exports.handler = async (event, context) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/success.html`,
-            cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+            success_url: "https://www.neuralleap.ai/thank-you.html",
+            cancel_url: "https://www.neuralleap.ai/thank-you.html",
         });
 
         return {
