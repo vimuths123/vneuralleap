@@ -14,6 +14,7 @@ exports.handler = async (event, context) => {
             currency: 'usd',
             customer: customerId,
             payment_method: paymentMethodId,
+            payment_method_types: ['us_bank_account'],
             off_session: true, 
             confirm: true, 
         });
