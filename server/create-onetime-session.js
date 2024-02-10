@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
             payment_method_types: ['us_bank_account'],
             line_items: [
                 {
-                    price: process.env.PRODUCT_ID,
+                    price: process.env.PRICE_ID,
                     quantity: 1,
                 },
             ],
