@@ -25,6 +25,9 @@ exports.handler = async (event, context) => {
             mode: 'payment',
             success_url: "https://www.neuralleap.ai/thank-you.html",
             cancel_url: "https://www.neuralleap.ai/thank-you.html",
+            payment_intent_data: {
+                setup_future_usage: 'off_session',
+            },
         });
 
         return {
