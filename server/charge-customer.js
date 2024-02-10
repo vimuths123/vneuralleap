@@ -5,17 +5,16 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event, context) => {
     const requestBody = JSON.parse(event.body);
-    const { paymentMethodId } = requestBody;
+    const { customerId } = requestBody;
 
 
     try {
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: amount, // Charge amount in smallest currency unit, e.g., cents for USD
+            amount: 500,
             currency: 'usd',
             customer: customerId,
-            payment_method: paymentMethodId,
-            off_session: true, // Indicates that the customer is not actively participating in the checkout process
-            confirm: true, // Automatically confirm the payment intent
+            off_session: true, 
+            confirm: true, 
         });
 
         return {
