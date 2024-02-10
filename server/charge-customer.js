@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event, context) => {
     const requestBody = JSON.parse(event.body);
-    const { customerId } = requestBody;
+    const { customerId, paymentMethodId } = requestBody;
 
 
     try {
@@ -13,6 +13,7 @@ exports.handler = async (event, context) => {
             amount: 500,
             currency: 'usd',
             customer: customerId,
+            payment_method: paymentMethodId,
             off_session: true, 
             confirm: true, 
         });
